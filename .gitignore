@@ -1,0 +1,17 @@
+# Rust build artifacts
+/target/
+Cargo.lock.orig
+
+# macOS app bundle / SwiftPM build products
+/build/
+/macos/.build/
+/macos/.swiftpm/
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+
+# Rendered/generated noise
+.DS_Store
+*.swp
+/.idea/
+/.vscode/

@@ -1,0 +1,58 @@
+[package]
+name = "browser-use"
+version = "0.1.0"
+edition = "2021"
+description = "Localhost WebSocket bridge and stdio MCP server for the Gecko Orange Firefox/Zen extension"
+license = "MIT"
+readme = "README.md"
+
+[lib]
+name = "browser_use"
+crate-type = ["rlib", "staticlib"]
+path = "rust/src/lib.rs"
+
+[[bin]]
+name = "browser-use"
+path = "rust/src/main.rs"
+
+[dependencies]
+tokio = { version = "1.43", features = ["rt-multi-thread", "macros", "net", "io-util", "io-std", "time", "sync", "fs", "signal"] }
+hyper = { version = "1.5", features = ["http1", "server"] }
+hyper-util = { version = "0.1", features = ["tokio"] }
+http-body-util = "0.1"
+tokio-tungstenite = "0.26"
+futures-util = "0.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rand = "0.8"
+subtle = "2.6"
+clap = { version = "4.5", features = ["derive"] }
+
+[dev-dependencies]
+tempfile = "3.15"
+
+# Integration tests live under rust/tests/ (not the package-root tests/ dir), so
+# they must be declared explicitly.
+[[test]]
+name = "secret_test"
+path = "rust/tests/secret_test.rs"
+
+[[test]]
+name = "hub_test"
+path = "rust/tests/hub_test.rs"
+
+[[test]]
+name = "format_test"
+path = "rust/tests/format_test.rs"
+
+[[test]]
+name = "mcp_test"
+path = "rust/tests/mcp_test.rs"
+
+[[test]]
+name = "cli_test"
+path = "rust/tests/cli_test.rs"
+
+[[test]]
+name = "ffi_test"
+path = "rust/tests/ffi_test.rs"

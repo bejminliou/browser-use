@@ -1,0 +1,4 @@
+module CBrowserUse {
+    header "browser_use.h"
+    export *
+}

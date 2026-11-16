@@ -1,0 +1,14 @@
+# SwiftPM build output for the macos package.
+# (The assembled .app lives at the repo-root build/ directory, which the
+# repository-level .gitignore already covers.)
+.build/
+.swiftpm/
+
+# Xcode
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+DerivedData/
+
+# macOS
+.DS_Store

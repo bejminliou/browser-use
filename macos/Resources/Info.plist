@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Templated by Scripts/build-app.sh. __APP_NAME__, __BUNDLE_ID__, __VERSION__
+  and __BUILD__ are substituted at bundle-assembly time, so the app name lives in
+  exactly one place (APP_NAME in the root justfile) rather than in four files.
+-->
+<plist version="1.0">
+<dict>
+	<!--
+	  LSUIElement is the whole "no Dock icon" story. It registers the process
+	  with the WindowServer as a UIElement / accessory app, which is what
+	  removes the Dock tile AND the Command-Tab entry.
+
+	  The app can still opt *in* to a Dock icon at runtime by calling
+	  NSApplication.setActivationPolicy(.regular) — see DockIconController.
+	-->
+	<key>LSUIElement</key>
+	<true/>
+
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>__APP_NAME__</string>
+	<key>CFBundleIdentifier</key>
+	<string>__BUNDLE_ID__</string>
+	<!-- Resources/AppIcon.icns, rendered from Resources/AppIcon.svg by
+	     Scripts/render-app-icon.sh and copied in by Scripts/build-app.sh. -->
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>__APP_NAME__</string>
+	<key>CFBundleDisplayName</key>
+	<string>__APP_NAME__</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>__VERSION__</string>
+	<key>CFBundleVersion</key>
+	<string>__BUILD__</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>15.0</string>
+
+	<!-- The in-process hub is a loopback HTTP/WebSocket service. -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSSupportsAutomaticTermination</key>
+	<false/>
+	<key>NSSupportsSuddenTermination</key>
+	<false/>
+</dict>
+</plist>

@@ -1,0 +1,9 @@
+// Clang module for the canonical Rust C-ABI header.
+//
+// The header is NOT duplicated into the Swift package: this modulemap points at
+// `rust/include/browser_use.h`, which is also what `rust/include/module.modulemap`
+// exports. Keep the two modulemaps identical in effect.
+module CBrowserUse {
+    header "../../../rust/include/browser_use.h"
+    export *
+}
